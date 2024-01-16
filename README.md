@@ -8,3 +8,9 @@ To tackle this issue, we propose a novel joint-motion interactive learning frame
 ## Method Overview
 
 ![image](https://github.com/IJCAI2024-1731/JMI-Pose/blob/main/figs/fig22.jpg)
+
+## Visualization comparison
+![image](https://github.com/IJCAI2024-1731/JMI-Pose/blob/main/figs/fig44.jpg)
+
+## More visual results
+![image](https://github.com/IJCAI2024-1731/JMI-Pose/blob/main/figs/fig5.jpg)
