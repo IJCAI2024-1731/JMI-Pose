@@ -1,0 +1,46 @@
+_BASE_: "../Base_PoseTrack17.yaml"
+EXPERIMENT_NAME: 'JMI15'
+WORKERS: 3
+GPUS: (1,)
+OUTPUT_DIR: './output/JMI/'
+
+DISTANCE: 3
+CORE_FUNCTION: JMIFunction12
+DATASET:
+  NAME: "PoseTrack_Difference"
+
+MODEL:
+  NAME: JMIModel12
+  PRETRAINED: './DcPose_supp_files/pretrained_models/out_model.pth'
+  BACKBONE_PRETRAINED: './DcPose_supp_files/pretrained_models/out_model.pth'
+LOSS:
+  HEATMAP_MSE:
+    USE: true
+    WEIGHT: 1.0
+
+TRAIN:
+  AUTO_RESUME: true
+  SAVE_MODEL_PER_EPOCH: 1
+  BATCH_SIZE_PER_GPU: 27
+  END_EPOCH: 20
+  OPTIMIZER: adamw
+  MILESTONES:
+    - 5
+    - 10
+    - 15
+
+
+VAL:
+  BATCH_SIZE_PER_GPU: 80
+  FLIP_VAL: true
+  FLIP: true
+  COCO_BBOX_FILE: './DcPose_supp_files/posetrack17_precomputed_boxes/val_boxes.json'
+  MODEL_FILE: '/home/lf/diff/Code/output/JMI/JMI15/PoseTrack_Difference17/bbox_1.25_rot_45_scale_0.65-1.35_MseLoss_1.0/checkpoints/epoch_16_state.pth'
+
+TEST:
+  BATCH_SIZE_PER_GPU: 64
+  MODEL_FILE: './checkpoints/posetrack17/epoch_18_state.pth'
+
+DEBUG:
+  VIS_SKELETON: true
+  VIS_BBOX: false
